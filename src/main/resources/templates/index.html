@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+<head>
+
+</head>
+<body>
+<section layout:fragment="content" class="main-content">
+    <div class="service-container">
+        <h3><i class="fa fa-user"></i>&nbsp;&nbsp;회원 기능</h3>
+        <a href="/members/new">회원 가입</a>
+        <a href="/members">회원 목록</a>
+    </div>
+
+    <div class="service-container">
+        <h3><i class="fa fa-box"></i>&nbsp;&nbsp;상품 기능</h3>
+        <a href="/items/new3">상품 등록</a>
+        <a href="/items">상품 목록</a>
+    </div>
+    <div class="service-container">
+        <h3><i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;주문 기능</h3>
+        <a href="/order">상품 주문</a>
+        <a href="/orders">주문 내역</a>
+    </div>
+</section>
+</body>
+</html>

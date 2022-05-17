@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+<head>
+
+</head>
+<body>
+<section layout:fragment="content" class="main-content">
+
+  <h1>상품목록</h1>
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>상품명</th>
+      <th>가격</th>
+      <th>재고수량</th>
+      <th>수정</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+      <td><span th:text="${item.id}"></span></td>
+      <td><span th:text="${item.name}"></span></td>
+      <td><span th:text="${item.price}"></span></td>
+      <td><span th:text="${item.stockQuantity}"></span></td>
+      <td><a class="btn-primary btn-sm" th:href="@{item/edit/{id}(id = ${item.id})}">수정</a><td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+</body>
+</html>

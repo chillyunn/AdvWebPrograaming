@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+<head>
+
+</head>
+<body>
+<section layout:fragment="content" class="main-content">
+    <h1>회원가입</h1>
+    <form id="register-form" th:action="@{/members/new}" th:object="${member}" method="post">
+        <div class="form-row">
+            <label>이름: </label> <input type="text" th:field="${member.name}" autofocus="autofocus" placeholder="이름"/>
+        </div>
+        <div class="form-row">
+            <label>도시: </label><input type="text" th:field="*{city}" placeholder="도시"/><br />
+        </div>
+        <div class="form-row">
+            <label>거리: </label><input type="text" th:field="*{street}" placeholder="거리"/><br />
+        </div>
+        <div class="form-row">
+            <label>우편번호: </label><input type="text" th:field="*{zipcode}" placeholder="우편번호"/><br />
+        </div>
+        <div class="form-row">
+            <input type="submit" value="회원가입" />
+            <input type="reset" value="다시입력" />
+        </div>
+    </form>
+</section>
+</body>
+</html>

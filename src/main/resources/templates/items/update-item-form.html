@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+<head>
+
+</head>
+<body>
+<section layout:fragment="content" class="main-content">
+    <h1>상품수정</h1>
+    <form id="register-form" th:action="@{/item/edit}" th:object="${form}" method="post">
+        <div class="form-row">
+            <label>상품명: </label> <input type="text" th:field="*{name}" autofocus="autofocus" placeholder="상품명"/>
+        </div>
+        <div class="form-row">
+            <label>가격: </label><input type="text" th:field="*{price}" placeholder="가격"/><br />
+        </div>
+        <div class="form-row">
+            <label>수량: </label><input type="text" th:field="*{stockQuantity}" placeholder="수량"/><br />
+        </div>
+        <div class="form-row">
+            <label>저자: </label><input type="text" th:field="*{author}" placeholder="저자"/><br />
+        </div>
+        <div class="form-row">
+            <label>ISBN: </label><input type="text" th:field="*{isbn}" placeholder="ISBN"/><br />
+        </div>
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-row">
+            <input type="submit" value="상품수정" />
+            <input type="reset" value="다시입력" />
+        </div>
+    </form>
+</section>
+</body>
+</html>

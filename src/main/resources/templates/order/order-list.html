@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+<head>
+
+</head>
+<body>
+<section layout:fragment="content" class="main-content">
+    <h1>상품주문</h1>
+    <form id="register-form" th:action="@{/orders}" method="get">
+        <div class="form-row">
+            <label>회원명 </label>
+            <input type="text" name="memberName" placeholder="회원명"/>
+            <select name="orderStatus">
+                <option selected value="ORDER">ORDER</option>
+                <option value="CANCELED">CANCELED</option>
+            </select>
+            <input type="submit" value="검색" />
+            <input type="reset" value="초기화" />
+        </div>
+    </form>
+    <h1>주문리스트</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>회원명</th>
+            <th>상퓸이름</th>
+            <th>주문가격</th>
+            <th>주문수량</th>
+            <th>주문상태</th>
+            <th>주문일시</th>
+            <th>주문취소</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.member.name}"></td>
+            <td th:text="${order.orderItems.get(0).item.name}"></td>
+            <td th:text="${order.orderItems.get(0).orderPrice}"></td>
+            <td th:text="${order.orderItems.get(0).count}"></td>
+            <td th:text="${order.status}"></td>
+            <td th:text="${order.orderDate}"></td>
+            <td><a style="background-color:red; color:#fff" th:onclick="|javascript:CancelOrder(this,${order.id})|">CANCEL</a>
+        </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        function CancelOrder(el,id) {
+            let status = el.parentNode.previousElementSibling.previousElementSibling.innerHTML;
+            if(status=="CANCELED"){
+                    alert("이미 취소된 상품입니다.");
+            }else{
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "/orders/" + id + "/cancel");
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+</section>
+</body>
+</html>
